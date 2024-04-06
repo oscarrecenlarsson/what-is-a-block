@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wneve45yx.jpg";
-import bgImage3 from "../../assets/3d-digital-background-with-connecting-lines-dots.jpg";
 
 // const navigateToHome = () => {
 //   { path: "/blockchain", component: BlockchainPageView },
@@ -9,63 +8,8 @@ import bgImage3 from "../../assets/3d-digital-background-with-connecting-lines-d
 
 <template>
   <div
-    :style="{ backgroundImage: `url(${bgImage1}) ` }"
-    class="h-screen w-full flex items-center justify-center flex-col section-1"
-  >
-    <h1
-      class="text-4xl animate-slide-in-from-left text-white border-4 rounded-md bg-black p-4 mb-20"
-    >
-      What is a Block?
-    </h1>
-    <div class="content">
-      <div class="block-icons flex flex-col font-bold">
-        <div class="flex justify-center">
-          <font-awesome-icon
-            icon="stop"
-            class="fa-solid fa-stop size-40 block-1"
-          />
-          <span
-            class="absolute text-white text-lg font-bold bg-black px-2 py-1 mt-16 rounded shadow-lg"
-            >Block</span
-          >
-        </div>
-        <div class="flex justify-between">
-          <font-awesome-icon
-            icon="stop"
-            class="fa-solid fa-stop size-40 block-2"
-          />
-          <span
-            class="absolute text-white text-lg font-bold bg-black px-2 py-1 mt-14 rounded shadow-lg ml-[364px]"
-            >Blockchain</span
-          >
-          <font-awesome-icon
-            icon="stop"
-            class="fa-solid fa-stop size-40 block-3"
-          />
-          <span
-            class="absolute text-white text-lg font-bold mt-[20px] bg-black mt-16 px-2 py-1 rounded shadow-lg ml-12 mt-[10px]"
-            >Mine</span
-          >
-        </div>
-        <div class="flex justify-center">
-          <font-awesome-icon
-            icon="stop"
-            class="fa-solid fa-stop size-40 block-4 mt-[20px]"
-          />
-          <span
-            class="absolute text-white text-lg font-bold mt-[20px] bg-black mt-20 px-2 py-1 rounded shadow-lg"
-            >Nounce</span
-          >
-        </div>
-      </div>
-      <h1 class="block-text text-2xl font-bold text-gray-700">
-        Blockchain<br />Technology
-      </h1>
-    </div>
-  </div>
-  <div
     class="h-screen w-full flex items-center justify-center flex-col section-2"
-    :style="{ backgroundImage: `url(${bgImage3}) ` }"
+    :style="{ backgroundImage: `url(${bgImage1}) ` }"
   >
     <div class="flip-card-container">
       <div class="flip-card">
@@ -150,42 +94,6 @@ import bgImage3 from "../../assets/3d-digital-background-with-connecting-lines-d
 </template>
 
 <style scoped>
-.content {
-  display: flex;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(520px, #f08f538c, transparent 70%);
-}
-.block-text {
-  position: absolute;
-  top: 63%;
-  left: 47%;
-}
-.block-icons {
-  height: 100%;
-  width: 500px;
-  animation: rotation 10s linear infinite;
-}
-@keyframes rotation {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.block-icons font-awesome-icon {
-  position: relative;
-}
-
-@keyframes slide-in-from-left {
-  0% {
-    transform: translateX(-1000%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 .animate-slide-in-from-left {
   animation: slide-in-from-left 3s ease-out;
 }
@@ -236,28 +144,29 @@ import bgImage3 from "../../assets/3d-digital-background-with-connecting-lines-d
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 1px solid coral;
+  border: 3px solid rgb(0, 143, 0);
   border-radius: 1rem;
 }
 
 .flip-card-front {
   background: linear-gradient(
     120deg,
-    rgb(11, 37, 144) 60%,
-    rgb(249, 238, 235) 88%,
+    rgb(199, 199, 199) 60%,
+    rgb(89, 89, 89) 88%,
     rgb(110, 99, 95) 40%,
-    rgb(200, 87, 0) 48%
+    rgb(0, 143, 0) 48%
   );
-  color: rgb(200, 87, 0);
+  color: rgb(0, 143, 0);
 }
 
 .flip-card-back {
   background: linear-gradient(
     120deg,
-    rgb(200, 87, 0) 48% rgb(110, 99, 95) 40%,
+    rgb(0, 0, 0) 48% rgb(110, 99, 95) 40%,
     rgb(249, 238, 235) 88%,
     rgb(11, 37, 144) 60%
   );
+  border-color: rgb(0, 0, 0);
   color: white;
   transform: rotateY(180deg);
 }
