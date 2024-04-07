@@ -154,7 +154,6 @@ export default defineComponent({
   width: calc((var(--width) - var(--gap)) / 2);
   height: 50px;
   border: 2.5px solid black;
-  /* margin: 8px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,13 +169,11 @@ export default defineComponent({
   width: 137px;
   height: 50px;
   background-color: rgb(221, 221, 221);
-  /* margin: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2.5px solid black;
   cursor: pointer;
-  /* margin-bottom: 30px; */
 }
 
 .drag-box.matched {
