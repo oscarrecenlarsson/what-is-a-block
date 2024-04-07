@@ -74,7 +74,13 @@ export default defineComponent({
       targetBoxes: [
         { id: 1, label: "2024-03-25", matched: false, showLabel: false },
         { id: 2, label: "abcdef123456", matched: false, showLabel: false },
-        { id: 3, label: "Some Data", matched: false, showLabel: false },
+        {
+          id: 3,
+          label:
+            "{transactionID: 987, from: 0x123, to: 0x234, amount: 0.1 eth}",
+          matched: false,
+          showLabel: false,
+        },
         { id: 4, label: "987654fedcba", matched: false, showLabel: false },
         { id: 5, label: "42", matched: false, showLabel: false },
       ],
@@ -129,6 +135,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   gap: 100px;
+  min-width: 100%;
 }
 
 .drop-boxes {
