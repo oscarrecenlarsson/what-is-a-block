@@ -101,7 +101,9 @@ export default defineComponent({
       if (!box.showLabel) {
         box.showLabel = true;
         setTimeout(() => {
-          box.showLabel = false;
+          if (!box.matched) {
+            box.showLabel = false;
+          }
         }, 2000);
       }
     };
