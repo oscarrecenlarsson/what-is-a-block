@@ -50,6 +50,7 @@
         :draggable="!box.matched"
         @dragstart="handleDragStart($event, box)"
       >
+        <div class="checkmark-circle" v-if="box.matched">✓</div>
         {{ box.label }}
       </div>
     </div>
@@ -170,6 +171,7 @@ export default defineComponent({
 }
 
 .drag-box {
+  position: relative;
   width: 137px;
   height: 50px;
   background-color: rgb(221, 221, 221);
@@ -184,5 +186,20 @@ export default defineComponent({
   border-color: green;
   opacity: 0.5;
   cursor: default;
+}
+
+.checkmark-circle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
 }
 </style>
