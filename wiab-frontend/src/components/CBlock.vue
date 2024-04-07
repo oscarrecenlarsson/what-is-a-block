@@ -91,15 +91,18 @@ export default defineComponent({
       ) {
         targetBox.matched = true;
         state.currentDraggedItem.matched = true;
+        targetBox.showLabel = true;
       }
       state.currentDraggedItem = null;
     };
 
     const toggleLabel = (box: any) => {
-      box.showLabel = true;
-      setTimeout(() => {
-        box.showLabel = false;
-      }, 2000);
+      if (!box.showLabel) {
+        box.showLabel = true;
+        setTimeout(() => {
+          box.showLabel = false;
+        }, 2000);
+      }
     };
 
     return {
