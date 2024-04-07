@@ -166,6 +166,7 @@ export default defineComponent({
 
 .drop-box.matched {
   border-color: gold;
+  cursor: default;
 }
 
 .drag-box {
@@ -176,11 +177,12 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   border: 2.5px solid black;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .drag-box.matched {
   border-color: green;
   opacity: 0.5;
+  cursor: default;
 }
 </style>
