@@ -1,62 +1,3 @@
-<template>
-  <div class="container">
-    <div class="drop-boxes">
-      <div class="row">
-        <div
-          class="drop-box"
-          v-for="box in targetBoxes.slice(0, 2)"
-          :key="box.id"
-          :class="{ matched: box.matched }"
-          @dragover.prevent
-          @drop="handleDrop($event, box)"
-          @click="toggleLabel(box)"
-        >
-          {{ box.showLabel ? box.label : "?" }}
-        </div>
-      </div>
-      <div class="row big">
-        <div
-          class="drop-box"
-          v-for="box in targetBoxes.slice(2, 3)"
-          :key="box.id"
-          :class="{ matched: box.matched }"
-          @dragover.prevent
-          @drop="handleDrop($event, box)"
-          @click="toggleLabel(box)"
-        >
-          {{ box.showLabel ? box.label : "?" }}
-        </div>
-      </div>
-      <div class="row">
-        <div
-          class="drop-box"
-          v-for="box in targetBoxes.slice(3)"
-          :key="box.id"
-          :class="{ matched: box.matched }"
-          @dragover.prevent
-          @drop="handleDrop($event, box)"
-          @click="toggleLabel(box)"
-        >
-          {{ box.showLabel ? box.label : "?" }}
-        </div>
-      </div>
-    </div>
-    <div class="drag-boxes">
-      <div
-        class="drag-box"
-        v-for="box in draggableBoxes"
-        :key="box.id"
-        :class="{ matched: box.matched }"
-        :draggable="!box.matched"
-        @dragstart="handleDragStart($event, box)"
-      >
-        <div class="checkmark-circle" v-if="box.matched">✓</div>
-        {{ box.label }}
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
@@ -123,6 +64,65 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="container">
+    <div class="drop-boxes">
+      <div class="row">
+        <div
+          class="drop-box"
+          v-for="box in targetBoxes.slice(0, 2)"
+          :key="box.id"
+          :class="{ matched: box.matched }"
+          @dragover.prevent
+          @drop="handleDrop($event, box)"
+          @click="toggleLabel(box)"
+        >
+          {{ box.showLabel ? box.label : "?" }}
+        </div>
+      </div>
+      <div class="row big">
+        <div
+          class="drop-box"
+          v-for="box in targetBoxes.slice(2, 3)"
+          :key="box.id"
+          :class="{ matched: box.matched }"
+          @dragover.prevent
+          @drop="handleDrop($event, box)"
+          @click="toggleLabel(box)"
+        >
+          {{ box.showLabel ? box.label : "?" }}
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="drop-box"
+          v-for="box in targetBoxes.slice(3)"
+          :key="box.id"
+          :class="{ matched: box.matched }"
+          @dragover.prevent
+          @drop="handleDrop($event, box)"
+          @click="toggleLabel(box)"
+        >
+          {{ box.showLabel ? box.label : "?" }}
+        </div>
+      </div>
+    </div>
+    <div class="drag-boxes">
+      <div
+        class="drag-box"
+        v-for="box in draggableBoxes"
+        :key="box.id"
+        :class="{ matched: box.matched }"
+        :draggable="!box.matched"
+        @dragstart="handleDragStart($event, box)"
+      >
+        <div class="checkmark-circle" v-if="box.matched">✓</div>
+        {{ box.label }}
+      </div>
+    </div>
+  </div>
+</template>
 
 <style>
 :root {
