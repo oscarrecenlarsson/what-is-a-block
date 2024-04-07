@@ -47,7 +47,7 @@
         v-for="box in draggableBoxes"
         :key="box.id"
         :class="{ matched: box.matched }"
-        draggable="true"
+        :draggable="!box.matched"
         @dragstart="handleDragStart($event, box)"
       >
         {{ box.label }}
