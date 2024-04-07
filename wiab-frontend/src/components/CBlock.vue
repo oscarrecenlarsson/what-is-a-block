@@ -113,35 +113,48 @@ export default defineComponent({
 </script>
 
 <style>
+:root {
+  --gap: 10px;
+  --width: 300px;
+}
+
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 100px;
 }
 
-.drop-boxes,
+.drop-boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+}
+
 .drag-boxes {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
 }
 
 .row {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: var(--gap);
 }
 
 .row.big .drop-box {
-  width: 290px;
+  width: var(--width);
   height: 200px;
 }
 
 .drop-box {
-  width: 130px;
-  height: 130px;
-  border: 5px solid black;
-  margin: 10px;
+  width: calc((var(--width) - var(--gap)) / 2);
+  height: 50px;
+  border: 2.5px solid black;
+  /* margin: 8px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,22 +163,24 @@ export default defineComponent({
 }
 
 .drop-box.matched {
-  border-color: green;
+  border-color: gold;
 }
 
 .drag-box {
-  width: 130px;
-  height: 130px;
-  background-color: rgb(153, 153, 153);
-  margin: 10px;
+  width: 137px;
+  height: 50px;
+  background-color: rgb(221, 221, 221);
+  /* margin: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 5px solid black;
+  border: 2.5px solid black;
   cursor: pointer;
+  /* margin-bottom: 30px; */
 }
 
 .drag-box.matched {
   border-color: green;
+  opacity: 0.5;
 }
 </style>
