@@ -1,36 +1,126 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import ButtonComponent from "../ButtonComponent.vue";
+import bgImage2 from "../../assets/9120892.jpg";
+import nftPic from "../../assets/NFTpicture.png";
+import { ethers } from "ethers";
+import ABI from "../../ABI.js";
 
-const buttonClicked = () => {
-  console.log("Button clicked!");
+const isLoading = ref(false);
+const isSuccess = ref(false);
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
+
+let contract: ethers.Contract;
+let userAddress: string | null = null;
+
+async function interactWithContract() {
+  if (typeof window.ethereum !== "undefined") {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    userAddress = await signer.getAddress();
+    const contractAddress = "0x9a9de35Eda644410aa41b44905c8F650B66E75b2";
+    contract = new ethers.Contract(contractAddress, ABI, signer);
+    const formattedAddress = ethers.utils.getAddress(contractAddress);
+    console.log(`Formatted address: ${formattedAddress}`);
+  } else {
+    console.error(
+      "Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp"
+    );
+  }
+}
+
+interactWithContract();
+
+const mintClick = async () => {
+  console.log("Button clicked");
+  isLoading.value = true;
+  try {
+    if (userAddress && contract) {
+      const tx = await contract.mint(userAddress, {
+        value: ethers.utils.parseEther("0.005"),
+      });
+      await tx.wait();
+      isSuccess.value = true;
+    } else {
+      console.error("User address not found");
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const closeModal = () => {
+  isSuccess.value = false;
+  console.log("isSuccess:", isSuccess.value, "IS FALSE?");
 };
 </script>
 <template>
-  <div>
-    <h1>Certificate</h1>
-    <p>
-      Once you have completed all challenges you will be able to mint a
-      certificate here...
+  <div
+    class="h-screen w-full flex items-center justify-center flex-col"
+    :style="{ backgroundImage: `url(${bgImage2}) ` }"
+  >
+    <p class="mb-10 text-4xl text-white font-bold">
+      Congratulations on completing the course!
     </p>
-    <div class="flex items-center justify-center p-4 gap-5">
-      <ButtonComponent
-        text="Button with Hover"
-        size="small"
-        color="white"
-        :onClick="buttonClicked"
-      />
-      <ButtonComponent
-        text="Button with Hover"
-        size="medium"
-        color="black"
-        :onClick="buttonClicked"
-      />
-      <ButtonComponent
-        text="Button with Hover"
-        size="large"
-        color="white"
-        :onClick="buttonClicked"
-      />
+    <div class="rounded-lg overflow-hidden">
+      <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
+    </div>
+    <ButtonComponent
+      text="Mint Certificate"
+      size="large"
+      color="black"
+      @click="mintClick"
+      class="mt-5"
+    />
+    <div
+      v-if="isLoading"
+      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+      <div class="loader"></div>
+    </div>
+    <div
+      v-if="isSuccess"
+      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+      <div
+        class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
+      >
+        <h2 class="text-2xl mb-4">Success!</h2>
+        <p>Your NFT has been minted.</p>
+        <button
+          @click="closeModal"
+          class="mt-4 px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark"
+        >
+          Close
+        </button>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.loader {
+  border: 10px solid #cfcdcd;
+  border-top: 10px solid #0e8753;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
