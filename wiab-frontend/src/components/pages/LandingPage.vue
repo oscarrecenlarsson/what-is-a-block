@@ -151,21 +151,15 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
 .flip-card-front {
   background: linear-gradient(
     120deg,
-    rgb(171, 171, 171) 60%,
-    rgb(89, 89, 89) 88%,
-    rgb(110, 99, 95) 40%,
-    rgb(5, 99, 5) 48%
+    #1a202c 75%,
+    rgb(5, 99, 5) 80%,
+    rgb(5, 99, 5) 90%
   );
   color: rgb(5, 99, 5);
 }
 
 .flip-card-back {
-  background: linear-gradient(
-    120deg,
-    rgb(0, 0, 0) 48% rgb(110, 99, 95) 40%,
-    rgb(249, 238, 235) 88%,
-    rgb(11, 37, 144) 60%
-  );
+  background-color: rgba(0, 0, 0, 0.7);
   border-color: rgb(0, 0, 0);
   color: white;
   transform: rotateY(180deg);
