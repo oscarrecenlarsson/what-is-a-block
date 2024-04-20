@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CBlockchain from "../CBlockchain.vue";
+</script>
 <template>
   <div>
     <h1>What is a Blockchain?</h1>
@@ -8,4 +10,5 @@
     </p>
     <p>Here you will find an interactive puzzle...</p>
   </div>
+  <CBlockchain></CBlockchain>
 </template>

@@ -2,7 +2,7 @@
 import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
-  name: "DragAndDropExample",
+  name: "CBlock",
   setup() {
     const state = reactive({
       draggableBoxes: [
