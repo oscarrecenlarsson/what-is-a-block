@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CMining from "../CMining.vue";
+</script>
 <template>
   <div>
     <h1>Mine a Block</h1>
@@ -7,5 +9,6 @@
       Challenge: create a hash starting with 0000
     </p>
     <p>Here you will find an interactive puzzle...</p>
+    <CMining />
   </div>
 </template>
