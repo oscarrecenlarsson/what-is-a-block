@@ -1,6 +1,12 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
+interface DraggableBox {
+  id: number;
+  label: string;
+  matched: boolean;
+}
+
 export default defineComponent({
   name: "CBlock",
   setup() {
@@ -14,7 +20,7 @@ export default defineComponent({
       ],
       targetBoxes: [
         { id: 1, label: "2024-03-25", matched: false, showLabel: false },
-        { id: 2, label: "abcdef123456", matched: false, showLabel: false },
+        { id: 2, label: "19d6689c085a", matched: false, showLabel: false },
         {
           id: 3,
           label:
@@ -22,17 +28,17 @@ export default defineComponent({
           matched: false,
           showLabel: false,
         },
-        { id: 4, label: "987654fedcba", matched: false, showLabel: false },
+        { id: 4, label: "000000000000", matched: false, showLabel: false },
         { id: 5, label: "42", matched: false, showLabel: false },
       ],
-      currentDraggedItem: null,
+      currentDraggedItem: null as DraggableBox | null,
     });
 
-    const handleDragStart = (event: DragEvent, box: any) => {
+    const handleDragStart = (_event: DragEvent, box: any) => {
       state.currentDraggedItem = box;
     };
 
-    const handleDrop = (event: DragEvent, targetBox: any) => {
+    const handleDrop = (_event: DragEvent, targetBox: any) => {
       if (
         state.currentDraggedItem &&
         state.currentDraggedItem.id === targetBox.id

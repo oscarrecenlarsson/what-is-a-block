@@ -1,6 +1,12 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
+interface DraggableBox {
+  id: number;
+  label: string;
+  matched: boolean;
+}
+
 export default defineComponent({
   name: "CBlockchain",
   setup() {
@@ -49,14 +55,14 @@ export default defineComponent({
           showLabel: false,
         },
       ],
-      currentDraggedItem: null,
+      currentDraggedItem: null as DraggableBox | null,
     });
 
-    const handleDragStart = (event: DragEvent, box: any) => {
+    const handleDragStart = (_event: DragEvent, box: any) => {
       state.currentDraggedItem = box;
     };
 
-    const handleDrop = (event: DragEvent, targetBox: any) => {
+    const handleDrop = (_event: DragEvent, targetBox: any) => {
       if (
         state.currentDraggedItem &&
         state.currentDraggedItem.id === targetBox.id
