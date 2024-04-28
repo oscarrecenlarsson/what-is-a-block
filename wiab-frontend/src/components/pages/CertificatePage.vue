@@ -105,7 +105,7 @@ const closeModal = () => {
     :style="{ backgroundImage: `url(${bgImage2}) ` }"
   >
     <h1
-      class="mb-10 text-6xl text-white font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+      class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
     >
       YOU MADE IT, CONGRATULATIONS!
     </h1>
