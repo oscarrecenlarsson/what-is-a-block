@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import ButtonComponent from "../ButtonComponent.vue";
 import bgImage2 from "../../assets/9120892.jpg";
 import nftPic from "../../assets/NFTpicture.png";
@@ -9,6 +9,10 @@ import ABI from "../../ABI.js";
 const isLoading = ref(false);
 const isSuccess = ref(false);
 
+const buttonLabel = computed(() =>
+  isConnected.value ? "Mint Certificate" : "Connect your Account"
+);
+
 declare global {
   interface Window {
     ethereum: any;
@@ -17,16 +21,22 @@ declare global {
 
 let contract: ethers.Contract;
 let userAddress: string | null = null;
+const contractAddress = "0x9a9de35Eda644410aa41b44905c8F650B66E75b2";
 
 async function interactWithContract() {
   if (typeof window.ethereum !== "undefined") {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     userAddress = await signer.getAddress();
-    const contractAddress = "0x9a9de35Eda644410aa41b44905c8F650B66E75b2";
     contract = new ethers.Contract(contractAddress, ABI, signer);
     const formattedAddress = ethers.utils.getAddress(contractAddress);
     console.log(`Formatted address: ${formattedAddress}`);
+
+    // Check if the user is already connected
+    const accounts = await window.ethereum.request({ method: "eth_accounts" });
+    if (accounts.length > 0) {
+      isConnected.value = true;
+    }
   } else {
     console.error(
       "Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp"
@@ -36,11 +46,39 @@ async function interactWithContract() {
 
 interactWithContract();
 
+const isConnected = ref(false);
+
 const mintClick = async () => {
   console.log("Button clicked");
   isLoading.value = true;
   try {
-    if (userAddress && contract) {
+    // Check if Ethereum provider is available
+    if (typeof window.ethereum === "undefined") {
+      console.error(
+        "Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp"
+      );
+      return;
+    }
+
+    // Check if user is connected
+    if (!userAddress) {
+      await window.ethereum.enable();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      userAddress = await signer.getAddress();
+      isConnected.value = true;
+      return;
+    }
+
+    // Check if contract is initialized
+    if (!contract) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      contract = new ethers.Contract(contractAddress, ABI, signer);
+    }
+
+    // Start the minting process
+    if (isConnected.value && userAddress && contract) {
       const tx = await contract.mint(userAddress, {
         value: ethers.utils.parseEther("0.005"),
       });
@@ -63,17 +101,19 @@ const closeModal = () => {
 </script>
 <template>
   <div
-    class="h-screen w-full flex items-center justify-center flex-col"
+    class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
     :style="{ backgroundImage: `url(${bgImage2}) ` }"
   >
-    <p class="mb-10 text-4xl text-white font-bold">
-      Congratulations on completing the course!
-    </p>
+    <h1
+      class="mb-10 text-6xl text-white font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+    >
+      YOU MADE IT, CONGRATULATIONS!
+    </h1>
     <div class="rounded-lg overflow-hidden">
       <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
     </div>
     <ButtonComponent
-      text="Mint Certificate"
+      :text="buttonLabel"
       size="large"
       color="black"
       @click="mintClick"
@@ -81,13 +121,13 @@ const closeModal = () => {
     />
     <div
       v-if="isLoading"
-      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen w-full"
     >
       <div class="loader"></div>
     </div>
     <div
       v-if="isSuccess"
-      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen"
     >
       <div
         class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
@@ -122,5 +162,8 @@ const closeModal = () => {
   100% {
     transform: rotate(360deg);
   }
+}
+.shadow-cover {
+  height: calc(100vh - 100px);
 }
 </style>

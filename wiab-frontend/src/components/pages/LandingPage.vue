@@ -20,11 +20,11 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
           </div>
           <div class="flip-card-back">
             <p class="title-back font-bold p-2 text-white-900">
-              In the context of blockchain technology, a block is a data
-              structure that contains a group of transactions. These
-              transactions are bundled together and added to the blockchain in a
-              sequential order. Each block typically includes a cryptographic
-              hash of the previous block, creating a chain-like structure.
+              A block in a blockchain is a collection of transactions grouped
+              together. Each block contains a unique cryptographic hash, linking
+              it to the previous block, forming a chain. This structure ensures
+              immutability, transparency, and security within the decentralized
+              ledger system.
             </p>
           </div>
         </div>
@@ -36,15 +36,12 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
             <p>Learn More</p>
           </div>
           <div class="flip-card-back">
-            <p class="title-back font-bold p-2 text-white-900 text-sm">
-              A blockchain is a decentralized, distributed ledger technology
-              that records transactions across multiple computers in a way that
-              is transparent, secure, and tamper-resistant. Each block in the
-              blockchain contains a cryptographic hash of the previous block,
-              forming a chain of blocks. This technology is the foundation of
-              cryptocurrencies like Bitcoin and has various applications beyond
-              digital currencies, including supply chain management, voting
-              systems, and decentralized finance (DeFi).
+            <p class="title-back font-bold p-2 text-white-900">
+              The first blockchain, introduced with Bitcoin, revolutionized
+              digital currency by enabling secure and decentralized transactions
+              without the need for intermediaries. It consists of blocks of data
+              linked together through cryptographic hashes, creating an
+              immutable ledger of transactions.
             </p>
           </div>
         </div>
@@ -56,15 +53,12 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
             <p>Learn More</p>
           </div>
           <div class="flip-card-back">
-            <p class="title-back font-bold p-2 text-white-900 text-sm">
-              Mining is the process by which transactions are verified and added
-              to the public ledger (blockchain) in cryptocurrencies like
-              Bitcoin. Miners use powerful computers to solve complex
-              mathematical puzzles, known as proof-of-work algorithms, to
-              validate and secure transactions. In return for their efforts,
-              miners are rewarded with newly created coins and transaction fees.
-              Mining plays a crucial role in maintaining the integrity and
-              security of blockchain networks.
+            <p class="title-back font-bold p-2 text-white-900">
+              Mining is the process by which new transactions are verified and
+              added to the blockchain. Miners compete to solve complex
+              mathematical puzzles, with the first to solve it earning the right
+              to add the next block to the chain, along with a reward in the
+              form of cryptocurrency.
             </p>
           </div>
         </div>
@@ -76,15 +70,12 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
             <p>Learn More</p>
           </div>
           <div class="flip-card-back">
-            <p class="title-back font-bold p-2 text-white-900 text-sm">
-              Upon completing our blockchain tutorial, you'll receive a
-              comprehensive certificate verifying your understanding and
-              proficiency in blockchain technology. This certificate not only
-              recognizes your commitment to learning but also demonstrates your
-              capability to navigate and apply blockchain principles in various
-              contexts. With this certification, you'll be well-equipped to
-              explore opportunities in blockchain development, cryptocurrency
-              trading, or other blockchain-related fields.
+            <p class="title-back font-bold p-2 text-white-900">
+              Unlock all the challenges of blockchain knowledge to earn your
+              exclusive NFT! Once you've completed all the tasks, you'll be
+              awarded an NFT certificate, proving your mastery of blockchain
+              technology. Dive in, conquer those challenges, and claim your
+              unique digital collectible!
             </p>
           </div>
         </div>

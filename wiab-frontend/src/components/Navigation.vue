@@ -11,11 +11,9 @@ import {
 </script>
 
 <template>
-  <nav
-    class="p-6 flex justify-between items-center bg-gray-900 fixed w-full z-50"
-  >
+  <nav class="p-2 flex justify-between items-center bg-gray-900 w-full z-50">
     <div class="flex items-center">
-      <div class="flex items-center space-x-4 ml-2">
+      <div class="flex items-center space-x-4 ml-2 mt-2">
         <div class="relative">
           <FontAwesomeIcon class="text-4xl text-gray-300" :icon="faCube" />
           <span class="absolute bottom-10 left-0 text-white text-lg font-bold"
