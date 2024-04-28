@@ -9,13 +9,6 @@ type ButtonProps = {
   color: "white" | "black";
 
   /**
-   * @description The function to be called when the button is clicked
-
-   */
-
-  onClick: () => void;
-
-  /**
    * @description The size of the button
 
    */
@@ -64,7 +57,7 @@ const buttonClasses = computed(() => [
 </script>
 
 <template>
-  <button :class="buttonClasses" @click="props.onClick">
+  <button :class="buttonClasses" @click="$emit('click')">
     {{ props.text }}
   </button>
 </template>
