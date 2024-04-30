@@ -5,6 +5,7 @@ import bgImage2 from "../../assets/9120892.jpg";
 import nftPic from "../../assets/NFTpicture.png";
 import { ethers } from "ethers";
 import ABI from "../../ABI.js";
+import { usePuzzleStore } from "../../stores/puzzles";
 
 const isLoading = ref(false);
 const isSuccess = ref(false);
@@ -98,48 +99,79 @@ const closeModal = () => {
   isSuccess.value = false;
   console.log("isSuccess:", isSuccess.value, "IS FALSE?");
 };
+
+const store = usePuzzleStore();
+
+const puzzleStates = computed(() => {
+  return {
+    block: store.puzzles.block ? "✔️" : "❌",
+    blockchain: store.puzzles.blockchain ? "✔️" : "❌",
+    mining: store.puzzles.mining ? "✔️" : "❌",
+  };
+});
 </script>
 <template>
   <div
     class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
     :style="{ backgroundImage: `url(${bgImage2}) ` }"
   >
-    <h1
-      class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
-    >
-      YOU MADE IT, CONGRATULATIONS!
-    </h1>
-    <div class="rounded-lg overflow-hidden">
-      <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
-    </div>
-    <ButtonComponent
-      :text="buttonLabel"
-      size="large"
-      color="black"
-      @click="mintClick"
-      class="mt-5"
-    />
     <div
-      v-if="isLoading"
-      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen w-full"
+      v-if="store.completedCount !== 3"
+      style="color: white"
+      class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
     >
-      <div class="loader"></div>
-    </div>
-    <div
-      v-if="isSuccess"
-      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen"
-    >
-      <div
-        class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
+      <h1
+        class="mb-10 pb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+        style="max-width: 800px"
       >
-        <h2 class="text-2xl mb-4">Success!</h2>
-        <p>Your NFT has been minted.</p>
-        <button
-          @click="closeModal"
-          class="mt-4 px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark"
+        Come back here when you have completed all of the challenges
+      </h1>
+      <p>Block: {{ puzzleStates.block }}</p>
+      <p>Blockchain: {{ puzzleStates.blockchain }}</p>
+      <p>Mining: {{ puzzleStates.mining }}</p>
+    </div>
+
+    <div
+      v-else
+      class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
+    >
+      <h1
+        class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+      >
+        YOU MADE IT, CONGRATULATIONS!
+      </h1>
+      <div class="rounded-lg overflow-hidden">
+        <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
+      </div>
+      <ButtonComponent
+        :text="buttonLabel"
+        size="large"
+        color="black"
+        @click="mintClick"
+        class="mt-5"
+      />
+      <div
+        v-if="isLoading"
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen w-full"
+      >
+        <div class="loader"></div>
+      </div>
+      <div
+        v-if="isSuccess"
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen"
+      >
+        <div
+          class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
         >
-          Close
-        </button>
+          <h2 class="text-2xl mb-4">Success!</h2>
+          <p>Your NFT has been minted.</p>
+          <button
+            @click="closeModal"
+            class="mt-4 px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   </div>

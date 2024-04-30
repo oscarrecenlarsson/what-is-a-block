@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { usePuzzleStore } from "../stores/puzzles";
 
 interface DraggableBox {
   id: number;
@@ -10,6 +11,7 @@ interface DraggableBox {
 export default defineComponent({
   name: "CBlockchain",
   setup() {
+    const store = usePuzzleStore();
     const state = reactive({
       draggableBoxes: [
         { id: 2, hash: "QWE2", prevHash: "RTY1", matched: false },
@@ -70,8 +72,15 @@ export default defineComponent({
         targetBox.matched = true;
         state.currentDraggedItem.matched = true;
         targetBox.showLabel = true;
+        checkAllMatched();
       }
       state.currentDraggedItem = null;
+    };
+
+    const checkAllMatched = () => {
+      if (state.targetBoxes.every((box) => box.matched)) {
+        store.completePuzzle("blockchain");
+      }
     };
 
     return {
