@@ -112,13 +112,13 @@ const puzzleStates = computed(() => {
 </script>
 <template>
   <div
-    class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
+    class="h-screen w-full flex items-center justify-center flex-col page-container"
     :style="{ backgroundImage: `url(${bgImage2}) ` }"
   >
     <div
       v-if="store.completedCount !== 3"
       style="color: white"
-      class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
+      class="h-screen w-full flex items-center justify-center flex-col page-container"
     >
       <h1
         class="mb-10 pb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
@@ -133,7 +133,7 @@ const puzzleStates = computed(() => {
 
     <div
       v-else
-      class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
+      class="h-screen w-full flex items-center justify-center flex-col page-container"
     >
       <h1
         class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
@@ -195,7 +195,7 @@ const puzzleStates = computed(() => {
     transform: rotate(360deg);
   }
 }
-.shadow-cover {
-  height: calc(100vh - 100px);
+.page-container {
+  height: calc(100vh - 76px);
 }
 </style>

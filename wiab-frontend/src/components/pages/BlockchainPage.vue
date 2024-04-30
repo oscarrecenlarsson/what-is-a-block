@@ -11,7 +11,10 @@ const nextChallenge = () => {
 </script>
 <template>
   <div class="flex w-full flex-col text-center items-center">
-    <h1 class="text-4xl text-center items-center mb-4 mt-6">
+    <h1
+      class="text-4xl text-center items-center mb-4 mt-6"
+      style="font-family: 'Times New Roman', serif"
+    >
       What is a Blockchain?
     </h1>
     <p class="text-md flex items-center justify-center text-center max-w-7xl">

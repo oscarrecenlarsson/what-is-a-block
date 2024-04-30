@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wneve45yx.jpg";
+import { usePuzzleStore } from "../../stores/puzzles";
 
 // const navigateToHome = () => {
 //   { path: "/blockchain", component: BlockchainPageView },
 // };
+
+const store = usePuzzleStore();
 </script>
 
 <template>
   <div
-    class="h-screen w-full flex items-center justify-center flex-col section-2"
+    class="container w-full flex items-center justify-center flex-col section-2"
     :style="{ backgroundImage: `url(${bgImage1}) ` }"
   >
     <div class="flip-card-container">
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.block }"
+          >
             <p class="title">Block</p>
             <p>Learn More</p>
           </div>
@@ -31,7 +37,10 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
       </div>
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.blockchain }"
+          >
             <p class="title">Blockchain</p>
             <p>Learn More</p>
           </div>
@@ -48,7 +57,10 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
       </div>
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.mining }"
+          >
             <p class="title">Mining</p>
             <p>Learn More</p>
           </div>
@@ -135,18 +147,13 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 3px solid rgb(0, 143, 0);
+  border: 3px solid grey;
   border-radius: 1rem;
 }
 
 .flip-card-front {
-  background: linear-gradient(
-    120deg,
-    #1a202c 75%,
-    rgb(5, 99, 5) 80%,
-    rgb(5, 99, 5) 90%
-  );
-  color: rgb(5, 99, 5);
+  background: linear-gradient(120deg, #1a202c 75%, grey 80%, grey 90%);
+  color: white;
 }
 
 .flip-card-back {
@@ -154,5 +161,16 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
   border-color: rgb(0, 0, 0);
   color: white;
   transform: rotateY(180deg);
+}
+
+.complete {
+  border-color: gold; /* Green border indicates completion */
+  background-color: gold; /* Optional: lighter background for completed cards */
+  color: gold;
+  background: linear-gradient(120deg, #1a202c 75%, gold 80%, gold 90%);
+}
+
+.container {
+  height: calc(100vh - 76px);
 }
 </style>

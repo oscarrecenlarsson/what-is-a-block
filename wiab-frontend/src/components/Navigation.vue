@@ -11,8 +11,8 @@ import {
 </script>
 
 <template>
-  <nav class="p-2 flex justify-between items-center bg-gray-900 w-full z-50">
-    <div class="flex items-center">
+  <nav class="p-3 flex justify-between items-center bg-gray-900 w-full z-50">
+    <!-- <div class="flex items-center">
       <div class="flex items-center space-x-4 ml-2 mt-2">
         <div class="relative">
           <FontAwesomeIcon class="text-4xl text-gray-300" :icon="faCube" />
@@ -48,7 +48,13 @@ import {
           >
         </div>
       </div>
-    </div>
+    </div> -->
+    <RouterLink
+      class="text-gray-400 bg-gray-900 border-4 border-gray-900 px-3 py-2 text-xl font-medium rounded-md flex items-center gap-2 transition-colors duration-200 hover:bg-gray-700 hover:text-white hover:border-gray-200 transform hover:scale-105"
+      style="font-family: 'Times New Roman', serif"
+      to="/"
+      >What is a block?
+    </RouterLink>
     <div class="flex space-x-4">
       <RouterLink
         class="text-gray-400 bg-gray-900 border-4 border-gray-900 px-3 py-2 text-sm font-medium rounded-md flex items-center gap-2 transition-colors duration-200 hover:bg-gray-700 hover:text-white hover:border-gray-200 transform hover:scale-105"
