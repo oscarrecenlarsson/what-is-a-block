@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { usePuzzleStore } from "../stores/puzzles";
 
 interface DraggableBox {
   id: number;
@@ -11,6 +12,7 @@ interface DraggableBox {
 export default defineComponent({
   name: "CMining",
   setup() {
+    const store = usePuzzleStore();
     const state = reactive({
       draggableBoxes: [
         { id: 2, nonce: "1241532", matched: false, noMatch: false },
@@ -46,10 +48,17 @@ export default defineComponent({
         targetBox.matched = true;
         state.currentDraggedItem.matched = true;
         targetBox.showLabel = true;
+        checkAllMatched();
       } else if (state.currentDraggedItem) {
         state.currentDraggedItem.noMatch = true;
       }
       state.currentDraggedItem = null;
+    };
+
+    const checkAllMatched = () => {
+      if (state.targetBoxes.every((box) => box.matched)) {
+        store.completePuzzle("mining");
+      }
     };
 
     return {
@@ -74,7 +83,7 @@ export default defineComponent({
       >
         <div class="checkmark-circle" v-if="box.matched">✓</div>
         <div class="cross-circle" v-if="box.noMatch">X</div>
-        <div v-html="`<h5>Nonces</h5><br />${box.nonce}`"></div>
+        <div v-html="`<h5>Nonce</h5><br />${box.nonce}`"></div>
       </div>
     </div>
 

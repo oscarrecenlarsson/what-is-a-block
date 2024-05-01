@@ -2,7 +2,9 @@
 import CBlockchain from "../CBlockchain.vue";
 import ButtonComponent from "../ButtonComponent.vue";
 import { useRouter } from "vue-router";
+import { usePuzzleStore } from "../../stores/puzzles";
 
+const store = usePuzzleStore();
 const router = useRouter();
 
 const nextChallenge = () => {
@@ -10,11 +12,17 @@ const nextChallenge = () => {
 };
 </script>
 <template>
-  <div class="flex w-full flex-col text-center items-center">
-    <h1 class="text-4xl text-center items-center mb-4 mt-6">
+  <div class="flex w-full flex-col text-center items-center bg gap-5 mb-20">
+    <h1
+      class="text-4xl text-center items-center mb-4 mt-6"
+      style="font-family: 'Times New Roman', serif"
+    >
       What is a Blockchain?
     </h1>
-    <p class="text-md flex items-center justify-center text-center max-w-7xl">
+    <p
+      class="text-md flex flex-col justify-center text-justify max-w-2xl bg-gray-200 p-20 tracking-widest"
+    >
+      <b>Background:</b>
       In blockchain technology, the order and integrity of blocks are maintained
       by linking each block to the one preceding it through a cryptographic
       hash. This linkage forms a secure, continuous chain. Crucially, each block
@@ -29,19 +37,23 @@ const nextChallenge = () => {
       recording transactions.
       <br />
       <br />
-      Challenge: put the blocks in the right order based on the hashes
+      <b>Challenge:</b> Put the blocks in the right order based on the hashes
       <br />
       <br />
-      Hint: Look for the Genesis block and place it first in the chain.
+      <b>Hint:</b> Look for the Genesis block and place it first in the chain.
     </p>
-  </div>
-  <CBlockchain></CBlockchain>
-  <div class="flex items-center justify-center mt-4 mb-5">
-    <ButtonComponent
-      text="Go to the next challenge"
-      size="medium"
-      color="white"
-      :onClick="nextChallenge"
-    />
+
+    <CBlockchain></CBlockchain>
+    <div
+      v-if="store.puzzles.blockchain"
+      class="flex items-center justify-center mt-4 mb-5"
+    >
+      <ButtonComponent
+        text="Go to the next challenge"
+        size="medium"
+        color="white"
+        :onClick="nextChallenge"
+      />
+    </div>
   </div>
 </template>

@@ -5,6 +5,7 @@ import bgImage2 from "../../assets/9120892.jpg";
 import nftPic from "../../assets/NFTpicture.png";
 import { ethers } from "ethers";
 import ABI from "../../ABI.js";
+import { usePuzzleStore } from "../../stores/puzzles";
 
 const isLoading = ref(false);
 const isSuccess = ref(false);
@@ -48,8 +49,8 @@ interactWithContract();
 
 const isConnected = ref(false);
 
-const mintClick = async () => {
-  console.log("Button clicked");
+const mintClick = async (event: Event) => {
+  event.stopPropagation();
   isLoading.value = true;
   try {
     // Check if Ethereum provider is available
@@ -98,48 +99,90 @@ const closeModal = () => {
   isSuccess.value = false;
   console.log("isSuccess:", isSuccess.value, "IS FALSE?");
 };
+
+const store = usePuzzleStore();
+
+const puzzleStates = computed(() => {
+  return {
+    block: store.puzzles.block ? "✔️" : "❌",
+    blockchain: store.puzzles.blockchain ? "✔️" : "❌",
+    mining: store.puzzles.mining ? "✔️" : "❌",
+  };
+});
 </script>
 <template>
   <div
-    class="h-screen w-full flex items-center justify-center flex-col shadow-cover"
+    class="h-screen w-full flex items-center justify-center flex-col page-container"
     :style="{ backgroundImage: `url(${bgImage2}) ` }"
   >
-    <h1
-      class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
-    >
-      YOU MADE IT, CONGRATULATIONS!
-    </h1>
-    <div class="rounded-lg overflow-hidden">
-      <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
-    </div>
-    <ButtonComponent
-      :text="buttonLabel"
-      size="large"
-      color="black"
-      @click="mintClick"
-      class="mt-5"
-    />
     <div
-      v-if="isLoading"
-      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen w-full"
-    >
-      <div class="loader"></div>
-    </div>
-    <div
-      v-if="isSuccess"
-      class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen"
+      v-if="store.completedCount !== 3"
+      style="color: white"
+      class="h-screen w-full flex items-center justify-center flex-col page-container"
     >
       <div
-        class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
+        class="bg-black bg-opacity-80 p-12 mb-6 flex flex-col items-center justify-center rounded-3xl"
       >
-        <h2 class="text-2xl mb-4">Success!</h2>
-        <p>Your NFT has been minted.</p>
-        <button
-          @click="closeModal"
-          class="mt-4 px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark"
+        <h1
+          class="mb-10 pb-10 text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+          style="max-width: 800px"
         >
-          Close
-        </button>
+          Unlock all the challenges of blockchain knowledge to earn your
+          exclusive NFT! <br />
+          Once you've completed all the tasks, you'll be awarded an NFT
+          certificate, proving your mastery of blockchain technology. <br />
+          Dive in, conquer those challenges, and claim your unique digital
+          collectible!
+        </h1>
+        <div class="text-2xl font-bold">
+          <p>Block: {{ puzzleStates.block }}</p>
+          <p>Blockchain: {{ puzzleStates.blockchain }}</p>
+          <p>Mining: {{ puzzleStates.mining }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-else
+      class="h-screen w-full flex items-center justify-center flex-col page-container"
+    >
+      <h1
+        class="mb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+      >
+        YOU MADE IT, CONGRATULATIONS!
+      </h1>
+      <div class="rounded-lg overflow-hidden">
+        <img :src="nftPic" alt="NFT Picture" class="object-cover w-96 h-96" />
+      </div>
+      <ButtonComponent
+        :text="buttonLabel"
+        size="large"
+        color="black"
+        @click="mintClick"
+        class="mt-5"
+      />
+      <div
+        v-if="isLoading"
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen w-full"
+      >
+        <div class="loader"></div>
+      </div>
+      <div
+        v-if="isSuccess"
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center min-h-screen"
+      >
+        <div
+          class="bg-white p-4 rounded-lg shadow-lg text-center w-1/3 h-64 flex items-center justify-center flex-col"
+        >
+          <h2 class="text-2xl mb-4">Success!</h2>
+          <p>Your NFT has been minted.</p>
+          <button
+            @click="closeModal"
+            class="mt-4 px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -163,7 +206,7 @@ const closeModal = () => {
     transform: rotate(360deg);
   }
 }
-.shadow-cover {
-  height: calc(100vh - 100px);
+.page-container {
+  height: calc(100vh - 76px);
 }
 </style>

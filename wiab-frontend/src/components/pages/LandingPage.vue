@@ -1,24 +1,35 @@
 <script setup lang="ts">
 import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wneve45yx.jpg";
+import { router } from "../../router";
+import { usePuzzleStore } from "../../stores/puzzles";
+import ButtonComponent from "../ButtonComponent.vue";
 
 // const navigateToHome = () => {
 //   { path: "/blockchain", component: BlockchainPageView },
 // };
+
+const store = usePuzzleStore();
+const goToChallenge = (challenge: string) => {
+  router.push(`/${challenge}`);
+};
 </script>
 
 <template>
   <div
-    class="h-screen w-full flex items-center justify-center flex-col section-2"
+    class="container w-full flex items-center justify-center flex-col section-2"
     :style="{ backgroundImage: `url(${bgImage1}) ` }"
   >
     <div class="flip-card-container">
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.block }"
+          >
             <p class="title">Block</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               A block in a blockchain is a collection of transactions grouped
               together. Each block contains a unique cryptographic hash, linking
@@ -26,16 +37,25 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
               immutability, transparency, and security within the decentralized
               ledger system.
             </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('block')"
+            />
           </div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.blockchain }"
+          >
             <p class="title">Blockchain</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               The first blockchain, introduced with Bitcoin, revolutionized
               digital currency by enabling secure and decentralized transactions
@@ -43,16 +63,25 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
               linked together through cryptographic hashes, creating an
               immutable ledger of transactions.
             </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('blockchain')"
+            />
           </div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-card-inner">
-          <div class="flip-card-front">
+          <div
+            class="flip-card-front"
+            :class="{ complete: store.puzzles.mining }"
+          >
             <p class="title">Mining</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               Mining is the process by which new transactions are verified and
               added to the blockchain. Miners compete to solve complex
@@ -60,23 +89,12 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
               to add the next block to the chain, along with a reward in the
               form of cryptocurrency.
             </p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="title">Certificate</p>
-            <p>Learn More</p>
-          </div>
-          <div class="flip-card-back">
-            <p class="title-back font-bold p-2 text-white-900">
-              Unlock all the challenges of blockchain knowledge to earn your
-              exclusive NFT! Once you've completed all the tasks, you'll be
-              awarded an NFT certificate, proving your mastery of blockchain
-              technology. Dive in, conquer those challenges, and claim your
-              unique digital collectible!
-            </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('mining')"
+            />
           </div>
         </div>
       </div>
@@ -135,18 +153,13 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 3px solid rgb(0, 143, 0);
+  border: 3px solid grey;
   border-radius: 1rem;
 }
 
 .flip-card-front {
-  background: linear-gradient(
-    120deg,
-    #1a202c 75%,
-    rgb(5, 99, 5) 80%,
-    rgb(5, 99, 5) 90%
-  );
-  color: rgb(5, 99, 5);
+  background: linear-gradient(120deg, #1a202c 75%, grey 80%, grey 90%);
+  color: white;
 }
 
 .flip-card-back {
@@ -154,5 +167,16 @@ import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wne
   border-color: rgb(0, 0, 0);
   color: white;
   transform: rotateY(180deg);
+}
+
+.complete {
+  border-color: gold; /* Green border indicates completion */
+  background-color: gold; /* Optional: lighter background for completed cards */
+  color: gold;
+  background: linear-gradient(120deg, #1a202c 75%, gold 80%, gold 90%);
+}
+
+.container {
+  height: calc(100vh - 76px);
 }
 </style>
