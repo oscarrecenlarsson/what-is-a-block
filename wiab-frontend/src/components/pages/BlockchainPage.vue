@@ -2,7 +2,9 @@
 import CBlockchain from "../CBlockchain.vue";
 import ButtonComponent from "../ButtonComponent.vue";
 import { useRouter } from "vue-router";
+import { usePuzzleStore } from "../../stores/puzzles";
 
+const store = usePuzzleStore();
 const router = useRouter();
 
 const nextChallenge = () => {
@@ -39,7 +41,10 @@ const nextChallenge = () => {
     </p>
   </div>
   <CBlockchain></CBlockchain>
-  <div class="flex items-center justify-center mt-4 mb-5">
+  <div
+    v-if="store.puzzles.blockchain"
+    class="flex items-center justify-center mt-4 mb-5"
+  >
     <ButtonComponent
       text="Go to the next challenge"
       size="medium"

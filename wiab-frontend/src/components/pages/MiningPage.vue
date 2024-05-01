@@ -2,7 +2,9 @@
 import CMining from "../CMining.vue";
 import ButtonComponent from "../ButtonComponent.vue";
 import { useRouter } from "vue-router";
+import { usePuzzleStore } from "../../stores/puzzles";
 
+const store = usePuzzleStore();
 const router = useRouter();
 
 const nextChallenge = () => {
@@ -47,7 +49,10 @@ const nextChallenge = () => {
     </p>
     <CMining />
   </div>
-  <div class="flex items-center justify-center mt-4 mb-5">
+  <div
+    v-if="store.puzzles.mining"
+    class="flex items-center justify-center mt-4 mb-5"
+  >
     <ButtonComponent
       text="Go Mint Your Certificate!"
       size="medium"
