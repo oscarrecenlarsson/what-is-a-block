@@ -83,7 +83,7 @@ export default defineComponent({
       >
         <div class="checkmark-circle" v-if="box.matched">✓</div>
         <div class="cross-circle" v-if="box.noMatch">X</div>
-        <div v-html="`<h5>Nonces</h5><br />${box.nonce}`"></div>
+        <div v-html="`<h5>Nonce</h5><br />${box.nonce}`"></div>
       </div>
     </div>
 
