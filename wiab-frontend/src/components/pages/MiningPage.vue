@@ -25,8 +25,8 @@ const nextChallenge = () => {
       <b>Background:</b>
       In blockchain mining, miners search for a nonce, a specific number crucial
       for solving an equation provided by the network. This involves generating
-      a hash—a unique string of numbers and letters—below a target threshold by
-      combining block data with the nonce and running it through a hash
+      a hash, a unique string of numbers and letters, below a target threshold
+      by combining block data with the nonce and running it through a hash
       function. Miners essentially guess different nonce values, attempting
       millions of hashes per second until finding one that works. Once a valid
       nonce is found, the block is added to the blockchain, the solution is
@@ -35,8 +35,9 @@ const nextChallenge = () => {
       security, ensuring its decentralized nature.
       <br />
       <br />
-      <b>Challenge:</b> Find the right nonce! <b>Hint:</b> There is no hint,
-      just brute force!
+      <b>Challenge:</b> Find the right nonce!<br />
+      <br />
+      <b>Hint:</b> There is no hint, just brute force!
     </p>
     <CMining />
 

@@ -32,7 +32,7 @@ const nextChallenge = () => {
       creating a chain of blocks, thus solidifying its place in the sequence.
       Transaction data within the block represents its purpose, whether it's
       transferring cryptocurrencies or executing smart contracts. Additionally,
-      there's a nonce—a random value miners must calculate to fit certain
+      there's a nonce a random value miners must calculate to fit certain
       criteria in the proof of work algorithm. Successfully finding this nonce
       and verifying the block's integrity secures its addition to the
       blockchain, ensuring the entire ledger's security, consistency, and

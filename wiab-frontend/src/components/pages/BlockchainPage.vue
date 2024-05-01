@@ -37,7 +37,7 @@ const nextChallenge = () => {
       recording transactions.
       <br />
       <br />
-      <b>Challenge:</b> Put the blocks in the right order based on the hashes
+      <b>Challenge:</b> Put the blocks in the right order based on the hashes.
       <br />
       <br />
       <b>Hint:</b> Look for the Genesis block and place it first in the chain.
