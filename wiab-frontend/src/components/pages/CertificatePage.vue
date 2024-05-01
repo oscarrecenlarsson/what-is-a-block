@@ -184,6 +184,13 @@ const puzzleStates = computed(() => {
           </button>
         </div>
       </div>
+      <a
+        href="https://testnets.opensea.io/collection/whatisablock-1"
+        target="_blank"
+        class="text-xs flex items-center justify-center transition duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg whitespace-nowrap p-2 font-serif bg-white text-black hover:bg-custom-green hover:text-white inline-block mt-20 rounded"
+      >
+        View on Opensea
+      </a>
     </div>
   </div>
 </template>

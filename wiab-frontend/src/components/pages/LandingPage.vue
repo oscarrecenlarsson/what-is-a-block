@@ -29,7 +29,9 @@ const goToChallenge = (challenge: string) => {
             <p class="title">Block</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back flex justify-center items-center">
+          <div
+            class="flip-card-back flex justify-center items-center text-start"
+          >
             <p class="title-back font-bold p-2 text-white-900">
               A block in a blockchain is a collection of transactions grouped
               together. Each block contains a unique cryptographic hash, linking
@@ -55,13 +57,15 @@ const goToChallenge = (challenge: string) => {
             <p class="title">Blockchain</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back flex justify-center items-center">
+          <div
+            class="flip-card-back flex justify-center items-center text-start"
+          >
             <p class="title-back font-bold p-2 text-white-900">
-              The first blockchain, introduced with Bitcoin, revolutionized
-              digital currency by enabling secure and decentralized transactions
-              without the need for intermediaries. It consists of blocks of data
-              linked together through cryptographic hashes, creating an
-              immutable ledger of transactions.
+              In a blockchain, a block is a grouping of transactions. Each block
+              is uniquely identified by a cryptographic hash, which links it to
+              the preceding block, creating a chain. This design guarantees
+              immutability, transparency, and security within the decentralized
+              ledger system.
             </p>
             <ButtonComponent
               text="Go to challenge"
@@ -81,7 +85,9 @@ const goToChallenge = (challenge: string) => {
             <p class="title">Mining</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back flex justify-center items-center">
+          <div
+            class="flip-card-back flex justify-center items-center text-start"
+          >
             <p class="title-back font-bold p-2 text-white-900">
               Mining is the process by which new transactions are verified and
               added to the blockchain. Miners compete to solve complex
