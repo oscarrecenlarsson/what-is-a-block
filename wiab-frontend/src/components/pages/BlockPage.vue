@@ -11,7 +11,7 @@ const nextChallenge = () => {
 };
 </script>
 <template>
-  <div class="flex w-full flex-col text-center items-center">
+  <div class="flex w-full flex-col text-center items-center bg">
     <h1
       class="text-4xl text-center items-center mb-4 mt-6"
       style="font-family: 'Times New Roman', serif"

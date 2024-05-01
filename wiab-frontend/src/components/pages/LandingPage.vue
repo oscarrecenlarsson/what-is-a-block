@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import bgImage1 from "../../assets/blockchain-white-and-blue-sections-e1xrmn9wneve45yx.jpg";
+import { router } from "../../router";
 import { usePuzzleStore } from "../../stores/puzzles";
+import ButtonComponent from "../ButtonComponent.vue";
 
 // const navigateToHome = () => {
 //   { path: "/blockchain", component: BlockchainPageView },
 // };
 
 const store = usePuzzleStore();
+const goToChallenge = (challenge: string) => {
+  router.push(`/${challenge}`);
+};
 </script>
 
 <template>
@@ -24,7 +29,7 @@ const store = usePuzzleStore();
             <p class="title">Block</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               A block in a blockchain is a collection of transactions grouped
               together. Each block contains a unique cryptographic hash, linking
@@ -32,6 +37,12 @@ const store = usePuzzleStore();
               immutability, transparency, and security within the decentralized
               ledger system.
             </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('block')"
+            />
           </div>
         </div>
       </div>
@@ -44,7 +55,7 @@ const store = usePuzzleStore();
             <p class="title">Blockchain</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               The first blockchain, introduced with Bitcoin, revolutionized
               digital currency by enabling secure and decentralized transactions
@@ -52,6 +63,12 @@ const store = usePuzzleStore();
               linked together through cryptographic hashes, creating an
               immutable ledger of transactions.
             </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('blockchain')"
+            />
           </div>
         </div>
       </div>
@@ -64,7 +81,7 @@ const store = usePuzzleStore();
             <p class="title">Mining</p>
             <p>Learn More</p>
           </div>
-          <div class="flip-card-back">
+          <div class="flip-card-back flex justify-center items-center">
             <p class="title-back font-bold p-2 text-white-900">
               Mining is the process by which new transactions are verified and
               added to the blockchain. Miners compete to solve complex
@@ -72,23 +89,12 @@ const store = usePuzzleStore();
               to add the next block to the chain, along with a reward in the
               form of cryptocurrency.
             </p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="title">Certificate</p>
-            <p>Learn More</p>
-          </div>
-          <div class="flip-card-back">
-            <p class="title-back font-bold p-2 text-white-900">
-              Unlock all the challenges of blockchain knowledge to earn your
-              exclusive NFT! Once you've completed all the tasks, you'll be
-              awarded an NFT certificate, proving your mastery of blockchain
-              technology. Dive in, conquer those challenges, and claim your
-              unique digital collectible!
-            </p>
+            <ButtonComponent
+              text="Go to challenge"
+              size="small"
+              color="white"
+              :onClick="() => goToChallenge('mining')"
+            />
           </div>
         </div>
       </div>

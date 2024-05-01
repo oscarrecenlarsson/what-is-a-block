@@ -49,8 +49,8 @@ interactWithContract();
 
 const isConnected = ref(false);
 
-const mintClick = async () => {
-  console.log("Button clicked");
+const mintClick = async (event: Event) => {
+  event.stopPropagation();
   isLoading.value = true;
   try {
     // Check if Ethereum provider is available
@@ -120,15 +120,26 @@ const puzzleStates = computed(() => {
       style="color: white"
       class="h-screen w-full flex items-center justify-center flex-col page-container"
     >
-      <h1
-        class="mb-10 pb-10 text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
-        style="max-width: 800px"
+      <div
+        class="bg-black bg-opacity-80 p-12 mb-6 flex flex-col items-center justify-center rounded-3xl"
       >
-        Come back here when you have completed all of the challenges
-      </h1>
-      <p>Block: {{ puzzleStates.block }}</p>
-      <p>Blockchain: {{ puzzleStates.blockchain }}</p>
-      <p>Mining: {{ puzzleStates.mining }}</p>
+        <h1
+          class="mb-10 pb-10 text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-600"
+          style="max-width: 800px"
+        >
+          Unlock all the challenges of blockchain knowledge to earn your
+          exclusive NFT! <br />
+          Once you've completed all the tasks, you'll be awarded an NFT
+          certificate, proving your mastery of blockchain technology. <br />
+          Dive in, conquer those challenges, and claim your unique digital
+          collectible!
+        </h1>
+        <div class="text-2xl font-bold">
+          <p>Block: {{ puzzleStates.block }}</p>
+          <p>Blockchain: {{ puzzleStates.blockchain }}</p>
+          <p>Mining: {{ puzzleStates.mining }}</p>
+        </div>
+      </div>
     </div>
 
     <div

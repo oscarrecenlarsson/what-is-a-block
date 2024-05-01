@@ -26,7 +26,7 @@ type ButtonProps = {
 const props = defineProps<ButtonProps>();
 
 const sizeClasses = {
-  small: "min-w-24 h-10 text-sm",
+  small: "min-w-24 max-w-32 h-10 text-sm",
   medium: "min-w-28 h-12 text-md",
   large: "min-w-32 h-14 text-lg",
 };
