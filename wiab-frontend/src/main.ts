@@ -5,4 +5,5 @@ import { router } from "./router";
 import { createPinia } from "pinia";
 const pinia = createPinia();
 
+//Mount
 createApp(App).use(router).use(pinia).mount("#app");
