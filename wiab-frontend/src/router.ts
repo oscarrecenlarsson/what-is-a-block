@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import BlockchainPageView from "./views/BlockchainPageView.vue";
 import BlockPageView from "./views/BlockPageView.vue";
@@ -15,6 +15,6 @@ const routes = [
 ];
 
 export const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
